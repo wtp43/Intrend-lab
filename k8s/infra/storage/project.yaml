@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: storage
+  namespace: argocd
+spec:
+  sourceRepos:
+    - "https://github.com/wtp43/Intrend-lab"
+  destinations:
+    - namespace: "argocd"
+      server: "*"
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"

@@ -1,0 +1,16 @@
+# terraform/talos/machine-config/worker.yaml.tftpl
+machine:
+  network:
+    hostname: ${hostname}
+  kubelet:
+    extraMounts:
+      - destination: /var/lib/longhorn
+        type: bind
+        source: /var/lib/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
+  nodeLabels:
+    topology.kubernetes.io/region: ${cluster_name}
+    topology.kubernetes.io/zone: ${node_name}

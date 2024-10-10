@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: app-of-apps
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  sourceRepos:
+    - "https://github.com/wtp43/Intrend-lab"
+  destinations:
+    - namespace: "argocd"
+      server: "*"
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+

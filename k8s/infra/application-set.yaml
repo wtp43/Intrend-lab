@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: infrastructure
+  namespace: argocd
+  labels:
+    intrend.lab: infrastructure
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/wtp43/Intrend-lab
+        revision: HEAD
+        directories:
+          - path: k8s/infra/*
+  template:
+    metadata:
+      name: "{{ path.basename }}"
+      labels:
+        intrend.lab: infrastructure
+    spec:
+      project: infrastructure
+      source:
+        repoURL: https://github.com/wtp43/Intrend-lab
+        targetRevision: HEAD
+        path: "{{ path }}"
+      destination:
+        name: in-cluster
+        namespace: argocd
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
