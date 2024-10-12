@@ -20,10 +20,7 @@ configs:
       g, argocd:admin, role:admin
       g, argocd:read_all, role:readonly
   secret:
-    createSecret: true
-    argocdServerAdminPassword: $argocd_admin:admin.password
-    argocdServerAdminPasswordMtime: $argocd_admin:admin.passwordMtime
-
+    create: false
 crds:
   install: true
   # -- Keep CRDs on chart uninstall
