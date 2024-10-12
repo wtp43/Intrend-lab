@@ -7,20 +7,21 @@ module "talos" {
   }
 
   image = {
-    version = "v1.8.1"
+    version = "v1.8.1" 
+    # update_version = "v1.8.1"
     schematic = file("${path.module}/talos/image/schematic.yaml")
   }
 
   cilium = {
     install = file("${path.module}/talos/inline-manifests/cilium-install.yaml")
-    values = file("${path.module}/../kubernetes/cilium/values.yaml")
+    values = file("${path.module}/../k8s/infra/network/cilium/values.yaml")
   }
 
   cluster = {
     name            = "talos"
     endpoint        = "192.168.50.100"
     gateway         = "192.168.50.1"
-    talos_version   = "v1.8.1"
+    talos_version   = "v1.8.0"
     proxmox_cluster = "intrend"
   }
 
@@ -45,6 +46,7 @@ module "talos" {
       ram_dedicated = 4096
       datastore_id  = "local"
     }
+
     "ctrl-02" = {
       host_node     = "m70q2"
       machine_type  = "controlplane"
@@ -87,18 +89,26 @@ module "talos" {
     }
   }
 }
-module "sealed_secrets" {
-  depends_on = [module.talos]
-  source = "./bootstrap/sealed-secrets"
 
+module "onepassword_connect" {
+  depends_on = [module.talos]
+  source = "./bootstrap/onepassword-connect"
   providers = {
     kubernetes = kubernetes
+    helm = helm 
   }
-
-  // openssl req -x509 -days 365 -nodes -newkey rsa:4096 -keyout sealed-secrets.key -out sealed-secrets.cert -subj "/CN=sealed-secret/O=sealed-secret"
-  cert = {
-    cert = file("${path.module}/bootstrap/sealed-secrets/certificate/sealed-secrets.cert")
-    key = file("${path.module}/bootstrap/sealed-secrets/certificate/sealed-secrets.key")
+  onepassword = {
+    connect_credentials = file("${path.module}/bootstrap/onepassword-connect/1password-credentials.b64")
+    operator_token = file("${path.module}/bootstrap/onepassword-connect/operator_token.key")
   }
 }
-
+#
+# module "argocd" {
+#   depends_on = [module.onepassword_connect]
+#   source = "./bootstrap/argocd"
+#   providers = {
+#     kubernetes = kubernetes
+#     helm = helm
+#   }
+# }
+#

@@ -78,3 +78,4 @@ resource "talos_cluster_kubeconfig" "this"{
     read = "1m"
   }
 }
+

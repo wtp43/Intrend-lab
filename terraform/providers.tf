@@ -3,20 +3,26 @@ terraform {
   required_providers {
     talos = {
       source  = "siderolabs/talos"
-      version = "0.6.0"
+      version = ">=0.6.0"
     }
     proxmox = {
       source  = "bpg/proxmox"
-      version = "0.66.1"
+      version = ">=0.66.1"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.32.0"
+      version = ">=2.32.0"
     }
-    # restapi = {
-    #   source  = "Mastercard/restapi"
-    #   version = "1.19.1"
-    # }
+    helm = {
+      source = "hashicorp/helm"
+      version = ">=2.16.0"
+    }
+  }
+}
+
+provider "helm" {
+  kubernetes {
+    config_path = "output/kube-config.yaml"
   }
 }
 
@@ -24,7 +30,7 @@ provider "proxmox" {
   endpoint = var.proxmox.endpoint
   insecure = var.proxmox.insecure
 
-  username = var.proxmox.login_username
+  username = "${var.proxmox.username}@pam"
   password = var.proxmox.password
 
   # api_token = var.proxmox.api_token
@@ -40,14 +46,3 @@ provider "kubernetes" {
   client_key = base64decode(module.talos.kube_config.kubernetes_client_configuration.client_key)
   cluster_ca_certificate = base64decode(module.talos.kube_config.kubernetes_client_configuration.ca_certificate)
 }
-#
-# provider "restapi" {
-#   uri                  = var.proxmox.endpoint
-#   insecure             = var.proxmox.insecure
-#   write_returns_object = true
-#
-#   headers = {
-#     "Content-Type"  = "application/json"
-#     "Authorization" = "PVEAPIToken=${var.proxmox.api_token}"
-#   }
-# }

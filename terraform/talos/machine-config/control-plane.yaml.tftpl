@@ -9,8 +9,14 @@ machine:
         vip:
           ip: 192.168.50.90 # Specifies the IP address to be used.
   kubelet:
-    extraArgs:
-      rotate-server-certificates: true
+    extraMounts:
+      - destination: /var/lib/longhorn
+        type: bind
+        source: /var/lib/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
   nodeLabels:
     topology.kubernetes.io/region: ${cluster_name}
     topology.kubernetes.io/zone: ${node_name}
