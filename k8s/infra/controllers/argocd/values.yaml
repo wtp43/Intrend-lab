@@ -1,9 +1,5 @@
 # https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml
-global:
-  deploymentAnnotations:
-    operator.1password.io/item-path: "vaults/intrend-k8s/items/argocd"
-    operator.1password.io/item-name: "argocd-secret"
-
+#
 configs:
   cm:
     create: true
@@ -24,7 +20,9 @@ configs:
       g, argocd:admin, role:admin
       g, argocd:read_all, role:readonly
   secret:
-    createSecret: false
+    createSecret: true
+    argocdServerAdminPassword: $argocd_admin:admin.password
+    argocdServerAdminPasswordMtime: $argocd_admin:admin.passwordMtime
 
 crds:
   install: true

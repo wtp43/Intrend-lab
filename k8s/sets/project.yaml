@@ -3,8 +3,6 @@ kind: AppProject
 metadata:
   name: app-of-apps
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   sourceRepos:
     - "https://github.com/wtp43/Intrend-lab"
@@ -14,4 +12,3 @@ spec:
   clusterResourceWhitelist:
     - group: "*"
       kind: "*"
-

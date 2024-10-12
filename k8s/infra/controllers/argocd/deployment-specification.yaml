@@ -1,7 +1,0 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: deployment-example
-  annotations:
-    operator.1password.io/item-path: "vaults/VAULT/items/ITEM"
-    operator.1password.io/item-name: "SECRET_NAME"

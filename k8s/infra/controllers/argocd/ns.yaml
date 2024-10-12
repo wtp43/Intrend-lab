@@ -3,6 +3,4 @@ kind: Namespace
 metadata:
   name: argocd
   annotations:
-    operator.1password.io/item-path: "vaults/intrend-k8s/items/argocd"
-    operator.1password.io/item-name: "argocd-secret"
     operator.1password.io/auto-restart: "true"
