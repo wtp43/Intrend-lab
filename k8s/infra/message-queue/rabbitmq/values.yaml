@@ -22,7 +22,11 @@ auth:
   ##
   existingSecretPasswordKey: "password"
   ## @param auth.enableLoopbackUser If enabled, the user `auth.username` can only connect from localhost
+  existingErlangSecret: "rabbitmq-admin-secret"
+  ## @param auth.existingSecretErlangKey [default: rabbitmq-erlang-cookie] Erlang cookie key to be retrieved from existing secret
+  ## NOTE: ignored unless `auth.existingErlangSecret` parameter is set
   ##
+  existingSecretErlangKey: "erlang_cookie"
 resources:
   requests:
     cpu: 6
