@@ -1,0 +1,24 @@
+master:
+  count: 1
+  ## @param master.revisionHistoryLimit The number of old history to retain to allow rollback
+  ## NOTE: Explicitly setting this field to 0, will result in cleaning up all the history, breaking ability to rollback
+  revisionHistoryLimit: 10
+  resources:
+    requests:
+      cpu: 2
+      memory: 1024Mi
+    limits:
+      cpu: 3
+      memory: 2048Mi
+replica:
+  ## @param replica.kind Use either DaemonSet or StatefulSet (default)
+  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
+  kind: StatefulSet
+  replicaCount: 3
+  resources:
+    requests:
+      cpu: 2
+      memory: 1024Mi
+    limits:
+      cpu: 2
+      memory: 2048Mi
