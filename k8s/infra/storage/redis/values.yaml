@@ -22,3 +22,8 @@ replica:
     limits:
       cpu: 2
       memory: 2048Mi
+
+auth:
+  enabled: true
+  existingSecret: "redis-secret"
+  existingSecretPasswordKey: "password"

@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - ns.yaml
+  - redis-secret.yaml
 
 helmCharts:
   - name: redis
