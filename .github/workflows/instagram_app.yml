@@ -1,0 +1,19 @@
+name: Repository Dispatch
+on:
+  repository_dispatch:
+    types: [app-update]
+jobs:
+  update-ig-user-worker:
+    if: ${{ github.event.client_payload.deployment }} == "api_user_worker"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.client_payload.ref }}
+      - run: echo ${{ github.event.client_payload.docker_image }}
+
+      - name: Update deployment image
+        uses: mikefarah/yq@v4.44.3
+        with:
+          cmd: yq -i '.spec.template.spec.containers[0].image = "${{ github.event.client_payload.docker_image }}"' k8s/apps/data_harvesters/instagram/api_user_worker/deployment.yaml
+          
