@@ -29,9 +29,7 @@ spec:
         name: in-cluster
         namespace: argocd
       syncPolicy:
-        automated:
-          selfHeal: true
-          prune: true
-      ignoreApplicationDifferences:
-        - jsonPointers:
-            - /spec/syncPolicy
+        {}
+        # automated:
+        #   selfheal: true
+        #   prune: true
