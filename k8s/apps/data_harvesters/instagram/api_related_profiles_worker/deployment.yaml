@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-related-profiles-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-related-profiles-worker
+  template:
+    metadata:
+      labels:
+        app: api-related-profiles-worker
+    spec:
+      containers:
+        - name: api-related-profiles-worker-container
+          image: wjt40398/intrend-lab:api-related-profiles-worker-latest
+          imagePullPolicy: Always

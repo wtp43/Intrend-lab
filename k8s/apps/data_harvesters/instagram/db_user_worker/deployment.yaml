@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-user-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-user-worker
+  template:
+    metadata:
+      labels:
+        app: db-user-worker
+    spec:
+      containers:
+        - name: db-user-worker-container
+          image: wjt40398/intrend-lab:db-user-worker-latest
+          imagePullPolicy: Always
