@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: applications
+  name: data-harvesters
   namespace: argocd
   labels:
     intrend.lab: application
@@ -11,7 +11,7 @@ spec:
         repoURL: https://github.com/wtp43/Intrend-lab
         revision: HEAD
         directories:
-          - path: k8s/apps/data_harvesters/*
+          - path: k8s/apps/data-harvesters/*
   template:
     metadata:
       name: "{{ path.basename }}"
@@ -20,7 +20,7 @@ spec:
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
-      project: applications
+      project: data-harvesters
       source:
         repoURL: https://github.com/wtp43/Intrend-lab
         targetRevision: HEAD
