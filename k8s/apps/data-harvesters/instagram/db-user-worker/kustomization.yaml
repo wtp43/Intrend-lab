@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: rabbitmq-workers
 
 resources:
-  - ns.yaml
   - deployment.yaml

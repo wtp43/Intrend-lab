@@ -3,10 +3,11 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-- project.yaml
-- application-set.yaml
+  - project.yaml
+  - application-set.yaml
+
 labels:
-- includeSelectors: true
-  pairs:
-    app.kubernetes.io/managed-by: argocd
-    intrend.lab: app-management
+  - includeSelectors: true
+    pairs:
+      app.kubernetes.io/managed-by: argocd
+      intrend.lab: app-management
