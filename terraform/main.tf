@@ -7,21 +7,21 @@ module "talos" {
   }
 
   image = {
-    version = "v1.8.1" 
+    version = "v1.8.1"
     # update_version = "v1.8.1"
     schematic = file("${path.module}/talos/image/schematic.yaml")
   }
 
   cilium = {
     install = file("${path.module}/talos/inline-manifests/cilium-install.yaml")
-    values = file("${path.module}/../k8s/infra/network/cilium/values.yaml")
+    values  = file("${path.module}/../k8s/infra/network/cilium/values.yaml")
   }
 
   cluster = {
     name            = "talos"
     endpoint        = "192.168.50.100"
     gateway         = "192.168.50.1"
-    talos_version   = "v1.8.0"
+    talos_version   = "v1.8.1"
     proxmox_cluster = "intrend"
   }
 
@@ -63,7 +63,7 @@ module "talos" {
       ip            = "192.168.50.110"
       mac_address   = "BC:24:11:2E:08:00"
       vm_id         = 210
-      cpu           = 20
+      cpu           = 32
       ram_dedicated = 131072
       datastore_id  = "sabrent-1tb"
     }
@@ -73,7 +73,7 @@ module "talos" {
       ip            = "192.168.50.111"
       mac_address   = "BC:24:11:2E:08:01"
       vm_id         = 211
-      cpu           = 8
+      cpu           = 12
       ram_dedicated = 8192
       datastore_id  = "local"
     }
@@ -92,23 +92,13 @@ module "talos" {
 
 module "onepassword_connect" {
   depends_on = [module.talos]
-  source = "./bootstrap/onepassword-connect"
+  source     = "./bootstrap/onepassword-connect"
   providers = {
     kubernetes = kubernetes
-    helm = helm 
+    helm       = helm
   }
   onepassword = {
     connect_credentials = file("${path.module}/bootstrap/onepassword-connect/1password-credentials.b64")
-    operator_token = file("${path.module}/bootstrap/onepassword-connect/operator_token.key")
+    operator_token      = file("${path.module}/bootstrap/onepassword-connect/operator_token.key")
   }
 }
-#
-# module "argocd" {
-#   depends_on = [module.onepassword_connect]
-#   source = "./bootstrap/argocd"
-#   providers = {
-#     kubernetes = kubernetes
-#     helm = helm
-#   }
-# }
-#
