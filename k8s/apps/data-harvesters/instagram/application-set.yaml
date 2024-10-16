@@ -11,7 +11,7 @@ spec:
         repoURL: https://github.com/wtp43/Intrend-lab
         revision: HEAD
         directories:
-          - path: k8s/apps/data-harvesters/instagram*
+          - path: k8s/apps/data-harvesters/instagram/*
   template:
     metadata:
       name: "{{ path.basename }}"

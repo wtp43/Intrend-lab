@@ -16,3 +16,5 @@ spec:
         - name: db-user-worker-container
           image: wjt40398/intrend-lab:db-user-worker-latest
           imagePullPolicy: Always
+      imagePullSecrets:
+        - name: docker-secret

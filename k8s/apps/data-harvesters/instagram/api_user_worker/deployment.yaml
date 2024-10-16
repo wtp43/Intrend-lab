@@ -16,3 +16,5 @@ spec:
         - name: api-user-worker-container
           image: wjt40398/intrend-lab:api-user-worker-latest
           imagePullPolicy: Always
+      imagePullSecrets:
+        - name: docker-secret
