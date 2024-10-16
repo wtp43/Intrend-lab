@@ -14,5 +14,5 @@ spec:
     spec:
       containers:
         - name: cronjob-start-user-crawl-container
-          image: wjt40398/intrend-lab:master
+          image: wjt40398/intrend-lab:cronjob-start-user-crawl-latest
           imagePullPolicy: Always
