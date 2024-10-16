@@ -5,7 +5,7 @@ namespace: argocd
 resources:
   - project.yaml
   - application-set.yaml
-  - ns.yaml
+
 labels:
   - includeSelectors: true
     pairs:
