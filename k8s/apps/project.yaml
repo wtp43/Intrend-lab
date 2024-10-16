@@ -9,6 +9,8 @@ spec:
   destinations:
     - namespace: "argocd"
       server: "*"
+    - namespace: "rabbitmq-workers"
+      server: "*"
   clusterResourceWhitelist:
     - group: "*"
       kind: "*"

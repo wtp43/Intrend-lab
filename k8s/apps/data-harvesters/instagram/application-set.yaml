@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: applications
+  name: instagram-apps
   namespace: argocd
   labels:
     intrend.lab: application
@@ -20,7 +20,7 @@ spec:
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
-      project: applications
+      project: instagram-apps
       source:
         repoURL: https://github.com/wtp43/Intrend-lab
         targetRevision: HEAD
