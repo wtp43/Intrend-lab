@@ -5,7 +5,6 @@ namespace: argocd
 resources:
   - project.yaml
   - application-set.yaml
-  - docker-secret.yaml
 
 labels:
   - includeSelectors: true
