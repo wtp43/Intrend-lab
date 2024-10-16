@@ -16,3 +16,6 @@ spec:
     automated:
       selfHeal: true
       prune: true
+  ignoreApplicationDifferences:
+    - jsonPointers:
+        - /spec/syncPolicy
