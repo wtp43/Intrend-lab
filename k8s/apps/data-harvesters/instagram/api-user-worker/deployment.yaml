@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: api-user-worker
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
       app: api-user-worker
