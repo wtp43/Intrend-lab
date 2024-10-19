@@ -6,12 +6,19 @@ tasks:
     desc: Initialize the project
     cmds:
       - terraform init -upgrade
-      - go mod download
+      # - go mod download
+
+  # argocd:
+  #   desk: Bootstrap argocd
+  #   cmd:
+  #     - ../k8s/bootstrap_argocd.sh
 
   create:
     desc: Create the cluster
     cmds:
       - terraform apply -auto-approve
+      # - task argocd
+      - ./get_talos_kubernetes_config.sh
 
   destroy:
     desc: Destroy the cluster
@@ -24,3 +31,4 @@ tasks:
     cmds:
       - task destroy
       - task create
+      # - task argocd

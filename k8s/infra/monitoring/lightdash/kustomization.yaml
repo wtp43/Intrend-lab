@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: lightdash
+
+resources:
+  - ns.yaml
+  - lightdash-db-secret.yaml
+  - lightdash-secret.yaml
+
+helmCharts:
+  - name: lightdash
+    repo: https://lightdash.github.io/helm-charts
+    version: 1.5.1
+    releaseName: "lightdash"
+    includeCRDs: true
+    namespace: lightdash
+    valuesFile: values.yaml
