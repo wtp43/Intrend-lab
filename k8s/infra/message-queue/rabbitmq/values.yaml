@@ -1,4 +1,7 @@
 replicaCount: 3
+# avoiding cluster restart deadlock scenario 
+# https://www.rabbitmq.com/docs/clustering#restarting-readiness-probes
+podManagementPolicy: Parallel
 auth:
   ## @param auth.username RabbitMQ application username
   ## ref: https://github.com/bitnami/containers/tree/main/bitnami/rabbitmq#environment-variables
