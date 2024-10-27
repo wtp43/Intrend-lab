@@ -16,5 +16,8 @@ spec:
         - name: api-related-profiles-worker-container
           image: wjt40398/intrend-lab:api-related-profiles-worker-latest
           imagePullPolicy: Always
+          env:
+            - name: PYTHONUNBUFFERED
+              value: "0"
       imagePullSecrets:
         - name: docker-secret

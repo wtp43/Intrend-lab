@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: db-user-worker
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: db-user-worker
@@ -16,5 +16,8 @@ spec:
         - name: db-user-worker-container
           image: wjt40398/intrend-lab:db-user-worker-latest
           imagePullPolicy: Always
+          env:
+            - name: PYTHONUNBUFFERED
+              value: "0"
       imagePullSecrets:
         - name: docker-secret
