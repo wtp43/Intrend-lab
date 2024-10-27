@@ -1,4 +1,4 @@
-replicaCount: 3
+replicaCount: 1
 # avoiding cluster restart deadlock scenario 
 # https://www.rabbitmq.com/docs/clustering#restarting-readiness-probes
 podManagementPolicy: Parallel
@@ -32,7 +32,7 @@ auth:
   existingSecretErlangKey: "erlang_cookie"
 resources:
   requests:
-    cpu: 6
+    cpu: 12
     memory: 12Gi
   limits:
     cpu: 8
