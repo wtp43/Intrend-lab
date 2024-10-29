@@ -54,7 +54,7 @@ metrics:
       ## @param clusterOperator.metrics.service.ports.http RabbitMQ Cluster Operator metrics service HTTP port
       ##
       ports:
-        http: 15692
+        http: 80 
       ## Node ports to expose
       ## @param clusterOperator.metrics.service.nodePorts.http Node port for HTTP
       ## NOTE: choose port between <30000-32767>
@@ -106,7 +106,7 @@ metrics:
       jobLabel: app.kubernetes.io/name
       interval: "1s"
     podMonitor:
-      enabled: false
+      enabled: true
       ## @param clusterOperator.metrics.podMonitor.jobLabel Specify the jobLabel to use for the prometheus-operator
       ##
       jobLabel: app.kubernetes.io/name
