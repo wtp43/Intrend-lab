@@ -10,6 +10,9 @@ prometheus:
           resources:
             requests:
               storage: 10Gi
+          selector:
+            matchLabels:
+              app: prometheus
 alertmanager:
   alertmanagerspec:
     volumeClaimTemplate:
@@ -25,3 +28,4 @@ grafana:
         resources:
           requests:
             storage: 10Gi
+
