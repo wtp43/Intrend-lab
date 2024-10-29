@@ -40,3 +40,34 @@ resources:
 persistence:
   storageClass: longhorn
   storage: 8Gi
+
+metrics:
+  enabled: true
+  plugins: "rabbitmq_prometheus"
+  podAnnotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "{{ .Values.service.ports.metrics }}"
+  serviceMonitor:
+    namespace: "monitoring"
+    jobLabel: ""
+    labels: 
+      monitoring-platform: core-prometheus
+    default:
+      enabled: true
+      interval: 1s
+      scrapeTimeout: 750ms
+    perObject:
+      enabled: true
+      interval: 1s
+      scrapeTimeout: 750ms
+    detailed:
+      enabled: true
+      interval: 1s
+      scrapeTimeout: 750ms
+      family: 
+        - queue_coarse_metrics
+        - queue_metrics
+        - queue_consumer_count
+      vhost: 
+        - "/"
+
