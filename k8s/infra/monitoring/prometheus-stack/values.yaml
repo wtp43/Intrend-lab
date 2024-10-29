@@ -1,3 +1,7 @@
+defaultRules:
+  create: false
+nodeExporter:
+  enabled: false
 prometheus:
   prometheusSpec:
     serviceMonitorSelector: {}
