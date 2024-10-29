@@ -9,7 +9,7 @@ prometheus:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 10G
+              storage: 10Gi
 alertmanager:
   alertmanagerspec:
     volumeClaimTemplate:
@@ -24,4 +24,4 @@ grafana:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 10G
+            storage: 10Gi
