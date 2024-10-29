@@ -5,7 +5,6 @@ prometheus:
       volumeClaimTemplate:
         spec:
           storageClassName: longhorn
-          volumeName: pv-prometheus
           accessModes:
             - ReadWriteOnce
           resources:
