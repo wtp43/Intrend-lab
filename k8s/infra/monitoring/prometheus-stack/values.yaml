@@ -1,5 +1,7 @@
 prometheus:
   prometheusSpec:
+    serviceMonitorSelector: {}
+    podMonitorSelector: {}
     scrapeTimeout: "1s"
     storageSpec:
       volumeClaimTemplate:
@@ -13,6 +15,9 @@ prometheus:
           selector:
             matchLabels:
               app: prometheus
+  nodeExporter:
+    hostNetwork: false
+    hostPID: false
 alertmanager:
   alertmanagerspec:
     volumeClaimTemplate:
