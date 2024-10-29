@@ -10,6 +10,18 @@ prometheus:
           resources:
             requests:
               storage: 10G
-          selector:
-            matchLabels:
-              app: prometheus
+alertmanager:
+  alertmanagerspec:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: longhorn
+grafana:
+  grafanaspec:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: longhorn
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10G
