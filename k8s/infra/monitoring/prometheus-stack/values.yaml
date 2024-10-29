@@ -1,0 +1,16 @@
+prometheus:
+  prometheusSpec:
+    scrapeTimeout: "1s"
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: longhorn
+          volumeName: pv-prometheus
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 10G
+          selector:
+            matchLabels:
+              app: prometheus
