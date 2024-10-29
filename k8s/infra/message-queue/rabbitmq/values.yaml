@@ -104,14 +104,5 @@ metrics:
       enabled: true
       namespace: "monitoring"
       jobLabel: app.kubernetes.io/name
-      interval: "1s"
-    podMonitor:
-      enabled: true
-      ## @param clusterOperator.metrics.podMonitor.jobLabel Specify the jobLabel to use for the prometheus-operator
-      ##
-      jobLabel: app.kubernetes.io/name
-      ## @param clusterOperator.metrics.podMonitor.namespace Namespace which Prometheus is running in
-      ##
-      namespace: "monitoring"
       interval: 1s
-      scrapeTimeout: 30s
+      scrapeTimeout: 750ms

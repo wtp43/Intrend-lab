@@ -4,8 +4,6 @@ kind: Kustomization
 resources:
   - ns.yaml
   - 1password-item.yaml
-  - rabbitmq-cluster-operator-podmonitor.yaml
-  - rabbitmq-servicemonitor.yaml
 
 helmCharts:
   - name: rabbitmq

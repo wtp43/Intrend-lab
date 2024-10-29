@@ -3,17 +3,18 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: rabbitmq
+  namespace: monitoring
   # If labels are defined in spec.serviceMonitorSelector.matchLabels of your deployed Prometheus object, make sure to include them here.
 spec:
   endpoints:
     - port: prometheus
       scheme: http
       interval: 1s
-      scrapeTimeout: 14s
+      scrapeTimeout: 750ms
     - port: prometheus-tls
       scheme: https
       interval: 1s
-      scrapeTimeout: 14s
+      scrapeTimeout: 750ms
       tlsConfig:
         insecureSkipVerify:
           true # set to false and uncomment lines below to enable tls verification
@@ -30,7 +31,7 @@ spec:
           - queue_coarse_metrics
           - queue_metrics
       interval: 1s
-      scrapeTimeout: 14s
+      scrapeTimeout: 750ms
     - port: prometheus-tls
       scheme: https
       path: /metrics/detailed
@@ -39,7 +40,7 @@ spec:
           - queue_coarse_metrics
           - queue_metrics
       interval: 1s
-      scrapeTimeout: 14s
+      scrapeTimeout: 750ms
       tlsConfig:
         insecureSkipVerify: true
   selector:
