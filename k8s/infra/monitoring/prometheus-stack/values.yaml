@@ -7,24 +7,24 @@ prometheus:
       volumeClaimTemplate:
         spec:
           storageClassName: longhorn
+          volumeName: pv-prometheus
           accessModes:
             - ReadWriteOnce
           resources:
             requests:
               storage: 10Gi
-          selector:
-            matchLabels:
-              app: prometheus
 alertmanager:
   alertmanagerspec:
     volumeClaimTemplate:
       spec:
+        volumeName: pv-alertmanager
         storageClassName: longhorn
 grafana:
   grafanaspec:
     volumeClaimTemplate:
       spec:
         storageClassName: longhorn
+        volumeName: pv-grafana
         accessModes:
           - ReadWriteOnce
         resources:
