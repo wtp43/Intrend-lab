@@ -15,9 +15,6 @@ prometheus:
           selector:
             matchLabels:
               app: prometheus
-  nodeExporter:
-    hostNetwork: false
-    hostPID: false
 alertmanager:
   alertmanagerspec:
     volumeClaimTemplate:
