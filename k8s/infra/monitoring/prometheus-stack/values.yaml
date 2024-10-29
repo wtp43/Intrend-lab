@@ -3,6 +3,10 @@ prometheus:
     serviceMonitorSelector: {}
     podMonitorSelector: {}
     scrapeTimeout: "1s"
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
     storageSpec:
       volumeClaimTemplate:
         spec:
@@ -13,7 +17,8 @@ prometheus:
             requests:
               storage: 10Gi
 alertmanager:
-  alertmanagerspec:
+  alertmanagerSpec:
+    useExistingSecret: true
     storage:
       volumeClaimTemplate:
         spec:
@@ -22,7 +27,7 @@ alertmanager:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 5Gi
+              storage: 10Gi
 grafana:
   persistence:
     enabled: true
