@@ -14,20 +14,23 @@ prometheus:
               storage: 10Gi
 alertmanager:
   alertmanagerspec:
-    volumeClaimTemplate:
-      spec:
-        storageClassName: longhorn
-        resources:
-          requests:
-            storage: 5Gi
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: longhorn
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 5Gi
 grafana:
-  grafanaspec:
-    volumeClaimTemplate:
-      spec:
-        storageClassName: longhorn
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 10Gi
+  persistence:
+    enabled: true
+    type: sts
+    storageClassName: longhorn
+    accessModes:
+      - ReadWriteOnce
+    size: 20Gi
+    finalizers:
+      - kubernetes.io/pvc-protection
 
