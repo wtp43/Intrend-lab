@@ -43,7 +43,9 @@ persistence:
 
 metrics:
   enabled: true
-  plugins: "rabbitmq_prometheus"
+  plugins: 
+    - "rabbitmq_prometheus"
+    - "rabbitmq_consistent_hash_exchange"
   podAnnotations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "{{ .Values.service.ports.metrics }}"
