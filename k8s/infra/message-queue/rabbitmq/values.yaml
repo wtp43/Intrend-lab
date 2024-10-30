@@ -41,6 +41,9 @@ persistence:
   storageClass: longhorn
   storage: 8Gi
 
+containerPorts:
+  metrics: 15692
+
 metrics:
   enabled: true
   plugins: 
@@ -70,6 +73,3 @@ metrics:
         - queue_coarse_metrics
         - queue_metrics
         - queue_consumer_count
-      vhost: 
-        - "/"
-
