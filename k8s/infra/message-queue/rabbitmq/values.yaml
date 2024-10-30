@@ -64,4 +64,10 @@ metrics:
       enabled: true
       interval: 1s
       scrapeTimeout: 750ms
+      family: 
+        - queue_coarse_metrics
+        - queue_metrics
+        - queue_consumer_count
+      vhost: 
+        - "/"
 
