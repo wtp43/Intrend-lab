@@ -1,7 +1,10 @@
-replicaCount: 1
+replicaCount: 3
 # avoiding cluster restart deadlock scenario 
 # https://www.rabbitmq.com/docs/clustering#restarting-readiness-probes
 podManagementPolicy: Parallel
+extraPlugins:
+  - "rabbitmq_auth_backend_ldap"
+  - "rabbitmq_consistent_hash_exchange"
 auth:
   ## @param auth.username RabbitMQ application username
   ## ref: https://github.com/bitnami/containers/tree/main/bitnami/rabbitmq#environment-variables
@@ -32,23 +35,26 @@ auth:
   existingSecretErlangKey: "erlang_cookie"
 resources:
   requests:
-    cpu: 12
-    memory: 12Gi
+    cpu: 6
+    memory: 6Gi
   limits:
-    cpu: 14
-    memory: 16Gi
+    cpu: 8
+    memory: 10Gi
 persistence:
   storageClass: longhorn
   storage: 8Gi
 
 containerPorts:
   metrics: 15692
-
+service:
+  extraPortsHeadless:
+  - name: metrics
+    port: 15692
+    targetPort: 15692
+    protocol: "TCP"
 metrics:
   enabled: true
-  plugins: 
-    - "rabbitmq_prometheus"
-    - "rabbitmq_consistent_hash_exchange"
+  plugins: "rabbitmq_prometheus"
   podAnnotations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "{{ .Values.service.ports.metrics }}"
@@ -70,6 +76,12 @@ metrics:
       interval: 1s
       scrapeTimeout: 750ms
       family: 
+        - channel_queue_metrics
+        - channel_queue_exchange_metrics
+        - channel_metrics
+        - channel_exchange_metrics
+        - connection_metrics
+        - connection_coarse_metrics
         - queue_coarse_metrics
         - queue_metrics
         - queue_consumer_count
