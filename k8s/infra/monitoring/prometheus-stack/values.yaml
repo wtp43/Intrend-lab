@@ -1,9 +1,12 @@
 prometheus:
   prometheusSpec:
-    serviceMonitorSelector:
-      matchLabels:
-        monitoring-platform: core-prometheus
-    scrapeTimeout: 1s
+    serviceMonitorSelector: {}
+    ruleSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
+    interval: 1s
+    scrapeTimeout: 750ms
     storageSpec:
       volumeClaimTemplate:
         spec:
