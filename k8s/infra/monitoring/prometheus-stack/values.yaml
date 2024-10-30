@@ -1,16 +1,9 @@
-defaultRules:
-  create: false
-nodeExporter:
-  enabled: false
 prometheus:
   prometheusSpec:
-    serviceMonitorSelector: {}
-    podMonitorSelector: {}
-    scrapeTimeout: "1s"
-    serviceMonitorSelectorNilUsesHelmValues: false
-    podMonitorSelectorNilUsesHelmValues: false
-    ruleSelectorNilUsesHelmValues: false
-    probeSelectorNilUsesHelmValues: false
+    serviceMonitorSelector:
+      matchLabels:
+        monitoring-platform: core-prometheus
+    scrapeTimeout: 1s
     storageSpec:
       volumeClaimTemplate:
         spec:
@@ -22,7 +15,6 @@ prometheus:
               storage: 10Gi
 alertmanager:
   alertmanagerSpec:
-    useExistingSecret: true
     storage:
       volumeClaimTemplate:
         spec:

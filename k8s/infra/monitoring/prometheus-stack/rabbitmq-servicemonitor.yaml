@@ -45,6 +45,6 @@ spec:
         insecureSkipVerify: true
   selector:
     matchLabels:
-      app.kubernetes.io/component: rabbitmq
+      app.kubernetes.io/name: rabbitmq
   namespaceSelector:
     any: true
