@@ -42,18 +42,26 @@ persistence:
   storage: 8Gi
 
 metrics:
-    service:
+  enabled: true
+  plugins: "rabbitmq_prometheus"
+  podAnnotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "{{ .Values.service.ports.metrics }}"
+  serviceMonitor:
+    namespace: "monitoring"
+    jobLabel: ""
+    labels: 
+      monitoring-platform: core-prometheus
+    default:
       enabled: true
-      type: ClusterIP
-      plugins: 'rabbitmq_prometheus'
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "{{ .Values.clusterOperator.metrics.service.ports.http }}"
-    serviceMonitor:
-      enabled: true
-      namespace: "monitoring"
-      jobLabel: app.kubernetes.io/name
       interval: 1s
       scrapeTimeout: 750ms
-      additionalLabels:
-        monitoring-platform: core-prometheus
+    perObject:
+      enabled: true
+      interval: 1s
+      scrapeTimeout: 750ms
+    detailed:
+      enabled: true
+      interval: 1s
+      scrapeTimeout: 750ms
+
