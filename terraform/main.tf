@@ -32,8 +32,8 @@ module "talos" {
       ip            = "192.168.50.100"
       mac_address   = "BC:24:11:2E:C8:00"
       vm_id         = 201
-      cpu           = 2
-      ram_dedicated = 4096
+      cpu           = 4
+      ram_dedicated = 8192
       datastore_id  = "sabrent-1tb"
     }
     "ctrl-01" = {
@@ -42,28 +42,37 @@ module "talos" {
       ip            = "192.168.50.101"
       mac_address   = "BC:24:11:2E:C8:01"
       vm_id         = 202
-      cpu           = 2
-      ram_dedicated = 4096
+      cpu           = 4
+      ram_dedicated = 6144
       datastore_id  = "local"
     }
-
     "ctrl-02" = {
-      host_node     = "m70q2"
+      host_node     = "m75q2"
       machine_type  = "controlplane"
       ip            = "192.168.50.102"
       mac_address   = "BC:24:11:2E:C8:02"
       vm_id         = 203
-      cpu           = 2
+      cpu           = 4
       ram_dedicated = 4096
       datastore_id  = "local"
     }
+    # "ctrl-03" = {
+    #   host_node     = "m70q2"
+    #   machine_type  = "controlplane"
+    #   ip            = "192.168.50.103"
+    #   mac_address   = "BC:24:11:2E:C8:03"
+    #   vm_id         = 204
+    #   cpu           = 4
+    #   ram_dedicated = 4096
+    #   datastore_id  = "local"
+    # }
     "work-00" = {
       host_node     = "trpro"
       machine_type  = "worker"
       ip            = "192.168.50.110"
       mac_address   = "BC:24:11:2E:08:00"
       vm_id         = 210
-      cpu           = 32
+      cpu           = 52
       ram_dedicated = 131072
       datastore_id  = "sabrent-1tb"
     }
@@ -74,19 +83,31 @@ module "talos" {
       mac_address   = "BC:24:11:2E:08:01"
       vm_id         = 211
       cpu           = 12
-      ram_dedicated = 8192
+      ram_dedicated = 28672
       datastore_id  = "local"
     }
     "work-02" = {
-      host_node     = "m70q2"
+      host_node     = "m75q2"
       machine_type  = "worker"
       ip            = "192.168.50.112"
       mac_address   = "BC:24:11:2E:08:02"
       vm_id         = 212
-      cpu           = 8
-      ram_dedicated = 8192
+      cpu           = 10
+      ram_dedicated = 10240
       datastore_id  = "local"
     }
+    # "work-03" = {
+    #   host_node     = "m70q2"
+    #   machine_type  = "worker"
+    #   ip            = "192.168.50.113"
+    #   mac_address   = "BC:24:11:2E:08:03"
+    #   vm_id         = 213
+    #   cpu           = 10
+    #   ram_dedicated = 10240
+    #   datastore_id  = "local"
+    # }
+
+
   }
 }
 

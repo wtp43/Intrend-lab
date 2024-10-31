@@ -8,22 +8,15 @@ tasks:
       - terraform init -upgrade
       # - go mod download
 
-  # argocd:
-  #   desk: Bootstrap argocd
-  #   cmd:
-  #     - ../k8s/bootstrap_argocd.sh
-
   create:
     desc: Create the cluster
     cmds:
       - terraform apply -auto-approve
-      # - task argocd
-      - ./get_talos_kubernetes_config.sh
 
   destroy:
     desc: Destroy the cluster
     cmds:
-      - terraform destroy -target=null_resource.terraform-up -auto-approve
+      # - terraform destroy -target=null_resource.terraform-up -auto-approve
       - terraform destroy -auto-approve
 
   recreate:
