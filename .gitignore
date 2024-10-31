@@ -2,7 +2,6 @@
 *.DS_Store
 charts/example
 **/infra/**/charts
-# *secret*.yaml
 
 .terraform
 output
@@ -32,3 +31,4 @@ override.tf.json
 *.json
 
 *patch.sh
+*rabbitmq-mixin*
