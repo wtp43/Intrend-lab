@@ -31,12 +31,14 @@ auth:
   ## NOTE: ignored unless `auth.existingErlangSecret` parameter is set
   ##
   existingSecretErlangKey: "erlang_cookie"
+maxAvailableSchedulers: "20"
+onlineSchedulers: "15"
 resources:
   requests:
-    cpu: 14
+    cpu: 20
     memory: 6Gi
   limits:
-    cpu: 18
+    cpu: 22
     memory: 10Gi
 persistence:
   storageClass: longhorn
