@@ -15,26 +15,8 @@ prometheus:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 10Gi
-#     additionalScrapeConfigs: 
-#       - job_name: 'rabbitmq-server'
-#         static_configs:
-#           - targets:
-#               - 'rabbitmq-0.rabbitmq-headless.rabbitmq.svc.cluster.local:15692'
-#               - 'rabbitmq-1.rabbitmq-headless.rabbitmq.svc.cluster.local:15692'
-#               - 'rabbitmq-2.rabbitmq-headless.rabbitmq.svc.cluster.local:15692'
-#         metrics_path: '/metrics/detailed'
-#         params:
-#           family: ["queue_coarse_metrics", "queue_consumer_count", "channel_queue_metrics", "channel_queue_exchange_metrics", "channel_metrics", "connection_metrics", "connection_coarse_metrics", "channel_exchange_metrics"]
-#         scrape_interval: '1s'
-# additionalPrometheusRulesMap:
-#   rule-name:
-#     groups:
-#     - "name": "rabbitmq.rules"
-#       "rules":
-#       - "expr": |
-#           rabbitmq_detailed_queue_consumers * on(instance) group_left(rabbitmq_cluster, rabbitmq_node) max(rabbitmq_identity_info) by (rabbitmq_cluster, instance, rabbitmq_node)
-#         "record": "rabbitmq_queue_info"
+              storage: 200Gi
+    enableAdminAPI: true
 alertmanager:
   alertmanagerSpec:
     storage:

@@ -86,3 +86,5 @@ metrics:
         - queue_coarse_metrics
         - queue_metrics
         - queue_consumer_count
+    prometheusRule:
+      enabled: true

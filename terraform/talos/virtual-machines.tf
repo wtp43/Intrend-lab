@@ -20,8 +20,7 @@ resource "proxmox_virtual_environment_vm" "this" {
 
   cpu {
     cores = each.value.cpu
-    type         = "x86-64-v2-AES"  # recommended for modern CPUs
-    # type  = "host"
+    type  = "x86-64-v2-AES" # recommended for modern CPUs
   }
 
   memory {
@@ -41,7 +40,7 @@ resource "proxmox_virtual_environment_vm" "this" {
     discard      = "on"
     ssd          = true
     file_format  = "raw"
-    size = each.value.machine_type == "controlplane" ? 32 : 200
+    size         = each.value.machine_type == "controlplane" ? 32 : (each.value.host_node == "trpro" ? 450 : 200)
     file_id      = proxmox_virtual_environment_download_file.this["${each.value.host_node}_${each.value.update == true ? local.update_image_id : local.image_id}"].id
 
   }
