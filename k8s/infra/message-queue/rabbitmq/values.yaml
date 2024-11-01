@@ -1,4 +1,4 @@
-replicaCount: 3
+replicaCount: 1
 # avoiding cluster restart deadlock scenario 
 # https://www.rabbitmq.com/docs/clustering#restarting-readiness-probes
 podManagementPolicy: Parallel
