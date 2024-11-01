@@ -2,10 +2,7 @@ replicaCount: 1
 # avoiding cluster restart deadlock scenario 
 # https://www.rabbitmq.com/docs/clustering#restarting-readiness-probes
 podManagementPolicy: Parallel
-extraPlugins:
-  - "rabbitmq_auth_backend_ldap"
-  - "rabbitmq_consistent_hash_exchange"
-  - "rabbitmq_stream"
+extraPlugins: "rabbitmq_auth_backend_ldap rabbitmq_consistent_hash_exchange rabbitmq_stream"
 auth:
   ## @param auth.username RabbitMQ application username
   ## ref: https://github.com/bitnami/containers/tree/main/bitnami/rabbitmq#environment-variables
@@ -36,10 +33,10 @@ auth:
   existingSecretErlangKey: "erlang_cookie"
 resources:
   requests:
-    cpu: 6
+    cpu: 14
     memory: 6Gi
   limits:
-    cpu: 8
+    cpu: 18
     memory: 10Gi
 persistence:
   storageClass: longhorn
