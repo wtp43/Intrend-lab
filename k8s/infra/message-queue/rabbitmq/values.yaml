@@ -5,6 +5,7 @@ podManagementPolicy: Parallel
 extraPlugins:
   - "rabbitmq_auth_backend_ldap"
   - "rabbitmq_consistent_hash_exchange"
+  - "rabbitmq_stream"
 auth:
   ## @param auth.username RabbitMQ application username
   ## ref: https://github.com/bitnami/containers/tree/main/bitnami/rabbitmq#environment-variables
