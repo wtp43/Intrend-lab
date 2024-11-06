@@ -4,7 +4,8 @@ service:
   type: ClusterIP
 
 configMap:
-  PGSSLMODE: require
+  PGSSLMODE: verify-ca
+  PGSSLCERT: /etc/tls/ca.cert
 
 image:
   repository: lightdash/lightdash
