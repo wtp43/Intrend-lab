@@ -7,6 +7,8 @@ spec:
     spec:
       containers:
         - name: cert-container
+          image: busybox
+          command: ["sleep", "infinity"]
           volumeMounts:
             - name: cert-volume
               mountPath: /etc/tls/ca.cert
