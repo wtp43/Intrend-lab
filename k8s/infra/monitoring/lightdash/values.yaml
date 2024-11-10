@@ -3,27 +3,20 @@ replicaCount: 1
 service:
   type: ClusterIP
 
-configMap:
-  PGSSLMODE: verify-ca
-  PGSSLCERT: /etc/tls/ca.cert
-
 image:
   repository: lightdash/lightdash
   tag: "0.1302.7"
 
-# secrets:
-  # LIGHTDASH_SECRET: '{{ .Values.secrets.LIGHTDASH_SECRET | default (lookup "v1" "Secret" .Release.Namespace "lightdash-secret" "data").LIGHTDASH_SECRET | b64dec }}'
-  #
 postgresql:
-  enabled: false
+  enabled: true
 
-externalDatabase:
-  host: db-postgresql-do-user-17512755-0.k.db.ondigitalocean.com
-  user: intrend_admin
-  existingSecret: "lightdash-db-secret"
-  secretKeys:
-    passwordKey: "password"
-
-  database: intrend
-  port: 25060
-
+# externalDatabase:
+#   host: aws-0-us-east-1.pooler.supabase.com 
+#   user: postgres.vlhkdnmmvvoyjqthpkps
+#   existingSecret: "lightdash-db-secret"
+#   secretKeys:
+#     passwordKey: "password"
+#
+#   database: postgres 
+#   port: 5432
+#

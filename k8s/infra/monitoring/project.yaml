@@ -16,6 +16,8 @@ spec:
       server: "*"
     - namespace: "kubewall-system"
       server: "*"
+    - namespace: "lightdash"
+      server: "*"
   clusterResourceWhitelist:
     - group: "*"
       kind: "*"

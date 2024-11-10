@@ -6,7 +6,6 @@ resources:
   - ns.yaml
   - lightdash-db-secret.yaml
   - lightdash-secret.yaml
-  - cert-secret.yaml
 
 helmCharts:
   - name: lightdash
@@ -16,6 +15,3 @@ helmCharts:
     includeCRDs: true
     namespace: lightdash
     valuesFile: values.yaml
-
-patches:
-  - path: patches/postgres-cert.yaml
