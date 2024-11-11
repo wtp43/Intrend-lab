@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ig-user-worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ig-user-worker
+  template:
+    metadata:
+      labels:
+        app: ig-user-worker
+    spec:
+      containers:
+        - name: ig-user-worker-container
+          image: wjt40398/intrend-lab:ig-user-worker-latest
+          imagePullPolicy: Always
+          env:
+            - name: PYTHONUNBUFFERED
+              value: "0"
+      imagePullSecrets:
+        - name: docker-secret

@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-user-worker
+  name: ig-timeline-worker
 spec:
-  replicas: 10
+  replicas: 2
   selector:
     matchLabels:
-      app: api-user-worker
+      app: ig-timeline-worker
   template:
     metadata:
       labels:
-        app: api-user-worker
+        app: ig-timeline-worker
     spec:
       containers:
-        - name: api-user-worker-container
-          image: wjt40398/intrend-lab:api-user-worker-latest
+        - name: ig-timeline-worker-container
+          image: wjt40398/intrend-lab:ig-timeline-worker-latest
           imagePullPolicy: Always
           env:
             - name: PYTHONUNBUFFERED

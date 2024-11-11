@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-related-profiles-worker
+  name: crawl-worker
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: api-related-profiles-worker
+      app: crawl-worker
   template:
     metadata:
       labels:
-        app: api-related-profiles-worker
+        app: crawl-worker
     spec:
       containers:
-        - name: api-related-profiles-worker-container
-          image: wjt40398/intrend-lab:api-related-profiles-worker-latest
+        - name: crawl-worker-container
+          image: wjt40398/intrend-lab:crawl-worker-latest
           imagePullPolicy: Always
           env:
             - name: PYTHONUNBUFFERED
