@@ -4,7 +4,7 @@ namespace: lightdash
 
 resources:
   - ns.yaml
-  - lightdash-db-secret.yaml
+  # - lightdash-db-secret.yaml
   - lightdash-secret.yaml
 
 helmCharts:
