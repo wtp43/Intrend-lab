@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ig-user-worker
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ig-user-worker
@@ -12,6 +12,15 @@ spec:
       labels:
         app: ig-user-worker
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - work-00
       containers:
         - name: ig-user-worker-container
           image: wjt40398/intrend-lab:ig-user-worker-latest
