@@ -12,6 +12,15 @@ spec:
       labels:
         app: s3-worker
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - work-00
       containers:
         - name: s3-worker-container
           image: wjt40398/intrend-lab:s3-worker-latest
